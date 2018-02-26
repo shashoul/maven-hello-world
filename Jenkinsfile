@@ -3,10 +3,9 @@ pipeline {
 	agent any 
 
 	stages{
-		stage("Navigate"){
+		stage("Build"){
 		steps{
-			sh "(cd my-app && pwd)"
-			sh "pwd"
+			sh "(cd my-app && mvn clean compile)"
 	}
 }
 }
