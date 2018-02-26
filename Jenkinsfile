@@ -20,7 +20,7 @@ pipeline {
 
 		stage("Deployment"){
 				steps{
-					sh "java -cp my-app/target/classes testshady"
+					sh "echo deplyment"
 				}
 		}
 		
