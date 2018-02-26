@@ -17,5 +17,12 @@ pipeline {
 					sh "java -jar my-app/target/my-app-1.0-SNAPSHOT.jar"
 				}
 			}
+
+		stage("Deployment"){
+				steps{
+					sh "java -cp my-app/target/classes testshady"
+				}
+		}
+		
   }
 }
