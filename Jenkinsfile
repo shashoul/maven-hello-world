@@ -5,7 +5,7 @@ pipeline {
 	stages{
 		stage("Build"){
 		steps{
-			sh "(cd my-app && mvn clean compile)"
+			sh "(cd my-app && mvn clean compile exec:java)"
 	}
 }
 }
