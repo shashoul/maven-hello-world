@@ -5,7 +5,9 @@ pipeline{
 	stages{
 
 		stage("Build"){
-			sh "(cd my-app && mvn clean package)"
+			steps{
+				sh "(cd my-app && mvn clean package)"
+			}
 		}
 
 		stage("Run"){
