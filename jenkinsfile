@@ -12,12 +12,9 @@ pipeline {
             steps{
                 sh "cd my-app"
             }
-            steps{
-                sh "mvn clean compile"
-            }
             post{
                 success{
-                    echo "Build Succeed...."
+                    sh "mvn clean compile"
                 }
             }
         }
