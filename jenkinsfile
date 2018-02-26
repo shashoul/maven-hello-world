@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    parameters{
+        string(name:"tomcat_dev",defaultValue:'10.64.106.246',description:'Staging Server')
+        string(name:"tomcat_prod",defaultValue:'10.64.106.246',description:'Production Server')
+    }
+    
+    stages{
+
+        stage('Build'){
+            steps{
+                sh "mvn clean compile"
+            }
+            post{
+                success{
+                    echo "Build Succeed...."
+                }
+            }
+        }
+
+        stage("Run"){
+            steps{
+                sh "exec:java"
+            }
+        }
+    }
+    
+}
