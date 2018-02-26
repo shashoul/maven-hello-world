@@ -5,11 +5,12 @@ pipeline {
         string(name:"tomcat_dev",defaultValue:'10.64.106.246',description:'Staging Server')
         string(name:"tomcat_prod",defaultValue:'10.64.106.246',description:'Production Server')
     }
-    
+
     stages{
 
         stage('Build'){
             steps{
+                sh "cd my-app"
                 sh "mvn clean compile"
             }
             post{
