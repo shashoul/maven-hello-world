@@ -4,6 +4,10 @@ pipeline{
 
 	stages{
 
+		agent {
+			label 'linux-slave'
+		}
+
 		stage("Build"){
 			steps{
 				sh "(cd my-app && mvn clean package)"
