@@ -5,8 +5,10 @@ pipeline{
 	stages{
 
 		stage("Linux"){
-			
-			node('linux-slave'){
+			agent{
+				label: 'linux-slave'
+			}
+			parallel{
 					stage("Build"){
 						
 						sh "(cd my-app && mvn clean package)"
@@ -24,6 +26,8 @@ pipeline{
 						
 					}	
 			}
+					
+			
 			
 		}
 		
