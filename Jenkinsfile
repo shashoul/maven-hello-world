@@ -21,7 +21,7 @@ pipeline{
 			
 			steps{
 				sh "(cd my-app && mvn exec:java)"	 					
- 		    	sh "java -jar my-app/target/my-app-1.0-SNAPSHOT.jar"	
+ 		    	sh "(cd my-app && java -jar target/my-app-1.0-SNAPSHOT.jar)"	
 			}	 		
 		}
 		stage("Deployment"){
