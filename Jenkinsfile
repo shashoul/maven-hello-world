@@ -50,5 +50,4 @@ pipeline{
 			sh "echo Build failed!!!"
 		}
 	}
-
 }
