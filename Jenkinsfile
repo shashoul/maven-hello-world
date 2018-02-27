@@ -4,29 +4,31 @@ pipeline{
 
 	stages{
 
-		stage("Linux"){
+		stage("Test on Linux"){}
+		stage("Build"){
 			agent{
 				label 'linux-slave'
 			}
-			parallel{
-					stage("Build"){
-						steps{
-							sh "(cd my-app && mvn clean package)"
-						}
-					}
-					stage("Run"){
-						steps{
-							sh "(cd my-app && mvn exec:java)"	 					
- 							sh "java -jar my-app/target/my-app-1.0-SNAPSHOT.jar"	
-						}	 		
-					}
-					stage("Deployment"){
-						steps{
-							sh "echo Deployment"
-						}	
-					}	
-				}		
+			steps{
+				sh "(cd my-app && mvn clean package)"
 			}
-		
+		}
+		stage("Run"){
+			agent{
+				label 'linux-slave'
+			}
+			steps{
+				sh "(cd my-app && mvn exec:java)"	 					
+ 		    	sh "java -jar my-app/target/my-app-1.0-SNAPSHOT.jar"	
+			}	 		
+		}
+		stage("Deployment"){
+			agent{
+				label 'linux-slave'
+			}
+			steps{
+				sh "echo Deployment"
+				}	
+		}		
 	}
 }
