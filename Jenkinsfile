@@ -1,19 +1,19 @@
 pipeline{
 
 	parameters{
-		string(name:"build_machine_lable",defaultValue:"master",description:"the linux build machine label name")
+		string(name:"build_machine_label",defaultValue:"master",description:"the linux build machine label name")
         string(name:"tomcat_dev",defaultValue:'10.64.106.246',description:'Staging Server')
         string(name:"tomcat_prod",defaultValue:'10.64.107.249',description:'Production Server')
     }
 
 	agent{
-		label "'${params.build_machine_lable}'"
+		label "'${params.build_machine_label}'"
 		}
 
 	stages{
 		stage("Linux"){
 			steps{
-				sh "echo build runnig on Linux machine label ${params.build_machine_label}"
+				sh "echo build running on Linux machine label ${params.build_machine_label}"
 			}
 		}
 		stage("Build"){
