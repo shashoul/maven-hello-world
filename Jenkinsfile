@@ -35,7 +35,7 @@ pipeline{
 
 	post{
 		success{
-			sh "echo ${env.JENKINS_HOME}"
+			sh "echo ${env.JENKINS_HOME} ${env.JENKINS_USER}"
 			sh "echo Build is success!!!"
 		}
 		failure {
