@@ -4,7 +4,11 @@ pipeline{
 
 	stages{
 
-		stage("Test on Linux"){}
+		stage("Test on Linux"){
+			steps{
+				sh "echo testing on Linux..."
+			}
+		}
 		stage("Build"){
 			agent{
 				label 'linux-slave'
