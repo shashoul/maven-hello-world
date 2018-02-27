@@ -27,9 +27,11 @@ pipeline{
 			}	 		
 		}
 		stage("Deployment"){
-			steps{
-				sh "echo Deployment"
-				}	
+			 stage('Deploy to Staging'){
+                   steps{
+                            sh "(cd my-app && scp -i ${env.JENKINS_HOME}/tomcat-demo.pem target/my-app-1.0-SNAPSHOT.jar shady@${params.tomcat_prod}:/var/lib/tomcat8/webapps) "
+                         }
+                }
 		}		
 	}
 
