@@ -7,7 +7,7 @@ pipeline{
     }
 
 	agent{
-		label ${params.machine_lable}
+		label "${params.machine_lable}"
 		}
 
 	stages{
