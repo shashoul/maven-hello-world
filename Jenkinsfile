@@ -30,6 +30,11 @@ pipeline{
 			parallel{
 				stage('Deploy to Staging'){
                    steps{
+                            sh "(cd my-app && scp -i ${env.JENKINS_HOME}/tomcat-demo.pem target/my-app-1.0-SNAPSHOT.jar shady@${params.tomcat_dev}:/var/lib/tomcat8/webapps) "
+                         }
+                }
+				stage('Deploy to Producation'){
+                   steps{
                             sh "(cd my-app && scp -i ${env.JENKINS_HOME}/tomcat-demo.pem target/my-app-1.0-SNAPSHOT.jar shady@${params.tomcat_prod}:/var/lib/tomcat8/webapps) "
                          }
                 }
@@ -39,7 +44,6 @@ pipeline{
 
 	post{
 		success{
-			sh "echo ${env.JENKINS_HOME} ${env.JENKINS_USER}"
 			sh "echo Build is success!!!"
 		}
 		failure {
