@@ -32,11 +32,13 @@ pipeline{
 		}		
 	}
 
-	stages{
-		stage("test"){
-			steps{
-				sh "echo teststetsetseest"
-			}
+	post{
+		success{
+			sh "echo Build is success!!!"
+		}
+		fail{
+			sh "echo Build faild!!!"
 		}
 	}
+
 }
