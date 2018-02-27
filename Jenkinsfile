@@ -36,8 +36,8 @@ pipeline{
 		success{
 			sh "echo Build is success!!!"
 		}
-		fail{
-			sh "echo Build faild!!!"
+		failure {
+			sh "echo Build failed!!!"
 		}
 	}
 
