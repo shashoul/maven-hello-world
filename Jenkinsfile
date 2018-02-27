@@ -6,7 +6,7 @@ pipeline{
 
 		stage("Linux"){
 			agent{
-				label: 'linux-slave'
+				label 'linux-slave'
 			}
 			parallel{
 					stage("Build"){
