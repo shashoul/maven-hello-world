@@ -13,7 +13,7 @@ pipeline{
 	stages{
 		stage("Linux"){
 			steps{
-				sh "echo build on Linux machine..."
+				sh "echo build runnig on Linux machine label ${params.build_machine_label}"
 			}
 		}
 		stage("Build"){
