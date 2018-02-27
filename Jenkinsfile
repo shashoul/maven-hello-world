@@ -2,8 +2,8 @@ pipeline{
 
 	parameters{
 		string(name:"build_machine_label",defaultValue:"master",description:"the linux build machine label name")
-        string(name:"tomcat_dev",defaultValue:'10.64.106.246',description:'Staging Server')
-        string(name:"tomcat_prod",defaultValue:'10.64.107.249',description:'Production Server')
+        string(name:"staging",defaultValue:'shady@10.64.106.246',description:'Staging Server')
+        string(name:"production",defaultValue:'shady@10.64.107.249',description:'Production Server')
     }
 
 	agent{
@@ -30,12 +30,12 @@ pipeline{
 			parallel{
 				stage('Deploy to Staging'){
                    steps{
-                            sh "(cd my-app && scp -i ${env.JENKINS_HOME}/tomcat-demo.pem target/my-app-1.0-SNAPSHOT.jar shady@${params.tomcat_dev}:/var/lib/tomcat8/webapps) "
+                            sh "(cd my-app && scp -i ${env.JENKINS_HOME}/tomcat-demo.pem target/my-app-1.0-SNAPSHOT.jar ${params.staging}:/var/lib/tomcat8/webapps) "
                          }
                 }
 				stage('Deploy to Producation'){
                    steps{
-                            sh "(cd my-app && scp -i ${env.JENKINS_HOME}/tomcat-demo.pem target/my-app-1.0-SNAPSHOT.jar shady@${params.tomcat_prod}:/var/lib/tomcat8/webapps) "
+                            sh "(cd my-app && scp -i ${env.JENKINS_HOME}/tomcat-demo.pem target/my-app-1.0-SNAPSHOT.jar ${params.production}:/var/lib/tomcat8/webapps) "
                          }
                 }
 			}
