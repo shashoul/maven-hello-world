@@ -42,7 +42,7 @@ pipeline{
 						skipDefaultCheckout()
 					}
 					steps{
-						echo "deploy ot staging...."
+						echo "Deploy to staging...."
 						sh "scp -i ${env.JENKINS_HOME}/tomcat-demo.pem ${env.JENKINS_HOME}/jobs/${env.JOB_NAME}/lastSuccessful/archive/my-app/target/*.jar ${params.staging}:/var/lib/tomcat8/webapps "
 					}
 				}
@@ -54,7 +54,8 @@ pipeline{
 						skipDefaultCheckout()
 					}
 					steps{
-						echo "deploy to producation..."
+						echo "Deploy to producation..."
+						sh "scp -i ${env.JENKINS_HOME}/tomcat-demo.pem ${env.JENKINS_HOME}/jobs/${env.JOB_NAME}/lastSuccessful/archive/my-app/target/*.jar ${params.production}:/var/lib/tomcat8/webapps "
 					}
 				}
 			}
