@@ -32,6 +32,22 @@ pipeline{
                 archiveArtifacts artifacts: '**/target/*.jar' 
 			}
 		}
+		stage("Deployment"){
+			agent{
+				label 'master'
+			}
+			options{
+				skipDefaultCheckout()
+			}
+			parallel{
+				stage("Deploy to Staging"){
+					echo "deploy ot staging...."
+				}
+				stage("Deploy to Production"){
+					echo "deploy to producation..."
+				}
+			}
+		}
 	}
 
 	post{
