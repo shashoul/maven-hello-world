@@ -41,10 +41,14 @@ pipeline{
 			}
 			parallel{
 				stage("Deploy to Staging"){
-					echo "deploy ot staging...."
+					steps{
+						echo "deploy ot staging...."
+					}
 				}
 				stage("Deploy to Production"){
-					echo "deploy to producation..."
+					steps{
+						echo "deploy to producation..."
+					}
 				}
 			}
 		}
