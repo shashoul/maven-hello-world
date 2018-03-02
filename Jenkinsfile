@@ -26,20 +26,12 @@ pipeline{
  		    	sh "(cd my-app && java -jar target/my-app-1.0-SNAPSHOT.jar)"	
 			}	 		
 		}
-		stage("Deployment"){
-			parallel{
-				stage('Deploy to Staging'){
-                   steps{
-                            sh "(cd my-app && scp -i ${env.JENKINS_HOME}/tomcat-demo.pem target/my-app-1.0-SNAPSHOT.jar ${params.staging}:/var/lib/tomcat8/webapps) "
-                         }
-                }
-				stage('Deploy to Producation'){
-                   steps{
-                            sh "(cd my-app && scp -i ${env.JENKINS_HOME}/tomcat-demo.pem target/my-app-1.0-SNAPSHOT.jar ${params.production}:/var/lib/tomcat8/webapps) "
-                         }
-                }
+		stage("Archive"){
+			steps{
+				echo "Archiving..."
+                archiveArtifacts artifacts: '**/target/*.jar' 
 			}
-		}		
+		}
 	}
 
 	post{
