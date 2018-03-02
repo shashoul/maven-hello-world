@@ -43,6 +43,7 @@ pipeline{
 					}
 					steps{
 						echo "deploy ot staging...."
+						sh "scp -i ${env.JENKINS_HOME}/tomcat-demo.pem ${env.JENKINS_HOME}/jobs/${env.JOB_NAME}/lastSuccessful/archive/my-app/target/*.jar ${params.staging}:/var/lib/tomcat8/webapps "
 					}
 				}
 				stage("Deploy to Production"){
