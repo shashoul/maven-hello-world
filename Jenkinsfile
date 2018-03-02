@@ -33,19 +33,25 @@ pipeline{
 			}
 		}
 		stage("Deployment"){
-			agent{
-				label 'master'
-			}
-			options{
-				skipDefaultCheckout()
-			}
 			parallel{
 				stage("Deploy to Staging"){
+					agent{
+						label 'master'
+					}
+					options{
+						skipDefaultCheckout()
+					}
 					steps{
 						echo "deploy ot staging...."
 					}
 				}
 				stage("Deploy to Production"){
+					agent{
+						label 'master'
+					}
+					options{
+						skipDefaultCheckout()
+					}
 					steps{
 						echo "deploy to producation..."
 					}
